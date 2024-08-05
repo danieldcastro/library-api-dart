@@ -1,30 +1,53 @@
-# This file configures the static analysis results for your project (errors,
-# warnings, and lints).
-#
-# This enables the 'recommended' set of lints from `package:lints`.
-# This set helps identify many issues that may lead to problems when running
-# or consuming Dart code, and enforces writing Dart using a single, idiomatic
-# style and format.
-#
-# If you want a smaller set of lints you can change this to specify
-# 'package:lints/core.yaml'. These are just the most critical lints
-# (the recommended set includes the core lints).
-# The core lints are also what is used by pub.dev for scoring packages.
+analyzer:
+  errors:
+    missing_required_param: error
+    todo: ignore
+
+  exclude:
+    - test/*
 
 include: package:lints/recommended.yaml
 
-# Uncomment the following section to specify additional rules.
+linter:
+  rules:
+    - prefer_relative_imports
+    - always_declare_return_types
+    - avoid_bool_literals_in_conditional_expressions
+    - avoid_double_and_int_checks
+    - avoid_empty_else
+    - avoid_escaping_inner_quotes
+    - avoid_unnecessary_containers
+    - avoid_unused_constructor_parameters
+    - avoid_void_async
+    - await_only_futures
+    - camel_case_types
+    - camel_case_extensions
+    - cancel_subscriptions
+    - curly_braces_in_flow_control_structures
+    - directives_ordering
+    - empty_catches
+    - file_names
+    - hash_and_equals
+    - join_return_with_assignment
+    - leading_newlines_in_multiline_strings
+    - missing_whitespace_between_adjacent_strings
+    - non_constant_identifier_names
+    - package_api_docs
+    - package_prefixed_library_names
+    - parameter_assignments
+    - prefer_is_empty
+    - prefer_is_not_empty
+    - prefer_single_quotes
+    - sort_pub_dependencies
+    - test_types_in_equals
+    - throw_in_finally
+    - unnecessary_lambdas
+    - unnecessary_overrides
+    - unnecessary_parenthesis
+    - unnecessary_statements
+    - unrelated_type_equality_checks
+    - use_is_even_rather_than_modulo
+    - valid_regexps
+    - void_checks
+    - prefer_const_declarations
 
-# linter:
-#   rules:
-#     - camel_case_types
-
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
-
-# For more information about the core and recommended set of lints, see
-# https://dart.dev/go/core-lints
-
-# For additional information about configuring this file, see
-# https://dart.dev/guides/language/analysis-options

@@ -4,14 +4,16 @@ class CreateUserTable extends Migration {
   @override
   Future<void> up() async {
     super.up();
-    await createTable('users', () {
+    await createTableNotExists('user', () {
       id();
+      string('name');
+      timeStamps();
     });
   }
 
-    @override
-  Future<void> down() async{
+  @override
+  Future<void> down() async {
     super.down();
-    await dropIfExists('users');
+    await dropIfExists('user');
   }
 }
