@@ -4,30 +4,29 @@ import 'package:vania/vania.dart';
 
 import 'create_user_table.dart';
 import 'create_users_table.dart';
-import 'create_user_table.dart';
 
 void main(List<String> args) async {
   await MigrationConnection().setup();
-  if (args.isNotEmpty && args.first.toLowerCase() == "migrate:fresh") {
-    await Migrate().dropTables();
+  if (args.isNotEmpty && args.first.toLowerCase() == 'migrate:fresh') {
+    Migrate().dropTables();
   } else {
-    await Migrate().registry();
+    Migrate().registry();
   }
   await MigrationConnection().closeConnection();
   exit(0);
 }
 
 class Migrate {
-  registry() async {
-		 await MigrationConnection().setup();
+  Future<void> registry() async {
+    await MigrationConnection().setup();
     await CreateUserTable().up();
-		 await CreateUserTable().up();
-		 await CreateUsersTable().up();
-	}
+    await CreateUserTable().up();
+    await CreateUsersTable().up();
+  }
 
-  dropTables() async {
-		 await CreateUsersTable().down();
-		 await CreateUserTable().down();
-		 await CreateUserTable().down();
-	 }
+  Future<void> dropTables() async {
+    await CreateUsersTable().down();
+    await CreateUserTable().down();
+    await CreateUserTable().down();
+  }
 }
