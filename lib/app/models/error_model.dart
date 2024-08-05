@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import '../utils/enums/error_type_enum.dart';
+
 class ErrorModel {
   final String message;
   final String type;
@@ -13,4 +17,14 @@ class ErrorModel {
       'type': type,
     };
   }
+
+  String toJson() {
+    return jsonEncode(toMap());
+  }
+
+  factory ErrorModel.fromErrorType(ErrorTypeEnum errorType, String message) =>
+      ErrorModel(
+        message: message,
+        type: errorType.type,
+      );
 }

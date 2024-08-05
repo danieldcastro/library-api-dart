@@ -1,0 +1,7 @@
+[2024-08-05 09:21:07] ERROR: NoSuchMethodError: Class 'String' has no instance getter 'hasOnlyNumbers'.
+Receiver: "dfdf565465"
+Tried calling: hasOnlyNumbers
+[2024-08-05 09:22:33] ERROR: type 'int' is not a subtype of type 'String'
+[2024-08-05 09:31:27] ERROR: HttpException: ISBN Inválido
+[2024-08-05 09:31:42] ERROR: HttpException: ISBN Inválido
+[2024-08-05 09:31:46] ERROR: HttpException: ISBN Inválido
