@@ -1,17 +1,71 @@
-version: '3.9'
+# services:
+ 
 
-services:
-  vania:
-    build: .
-    image: vania/app:latest
-    container_name: vania
-    restart: always
-    volumes:
-      - app:/app
-      - ./public:/public
-      - ./storage:/storage
-    ports:
-      - "8000:8000"
+  # mariadb:
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile-mariadb
+  #   env_file:
+  #     - .env
+  #   environment:
+  #     MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+  #     MARIADB_DATABASE: ${DB_DATABASE}
+  #     MARIADB_USER: ${DB_USERNAME}
+  #     MARIADB_PASSWORD: ${DB_PASSWORD}
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - mariadb:/var/lib/mysql  
+  #   networks:
+  #     - my_network  
 
-volumes:
-  app:
+  # adminer:
+  #   image: adminer
+  #   restart: always
+  #   container_name: adminer_container
+  #   links:
+  #     - mariadb
+  #   ports:
+  #     - "8080:8080"      
+  #   networks:
+  #     - my_network  
+
+  # vania:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile-vania
+  #   container_name: vania
+  #   ports:
+  #     - "8000:8000"
+    # depends_on:
+    #   - mariadb
+    # environment:
+    #   - DB_HOST=0.0.0.0
+    #   - DB_PORT=3306
+    #   - DB_USER=daniel  
+    #   - DB_PASSWORD=marciano
+    #   - DB_NAME=library
+    # networks:
+    #   - my_network  
+
+# volumes:
+#   mariadb:
+
+#   vania:
+#     build: .
+#     image: vania/app:latest
+#     container_name: vania
+#     restart: always
+#     volumes:
+#       - app:/app
+#       - ./public:/public
+#       - ./storage:/storage
+#     ports:
+#       - "8000:8000"
+
+# volumes:
+#   app:
+
+# networks:
+#   my_network:
+#     driver: bridge  

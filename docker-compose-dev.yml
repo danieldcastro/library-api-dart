@@ -1,7 +1,7 @@
 services:
+ 
   mariadb:
     image: mariadb
-    container_name: mariadb_container
     restart: always
     env_file:
       - .env
@@ -14,9 +14,6 @@ services:
       - "3306:3306"
     volumes:
       - mariadb:/var/lib/mysql  
-    command: --wait_timeout=28800 --interactive_timeout=28800
-  
-
 
   adminer:
     image: adminer

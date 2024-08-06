@@ -1,0 +1,11 @@
+# Usando a imagem oficial do MariaDB
+FROM mariadb:latest
+
+# Definindo variáveis de ambiente para configurar o MariaDB
+ENV MYSQL_ROOT_PASSWORD=marciano123
+ENV MYSQL_DATABASE=library
+ENV MYSQL_USER=daniel
+ENV MYSQL_PASSWORD=marciano
+
+# Expondo a porta padrão do MariaDB
+EXPOSE 3306
