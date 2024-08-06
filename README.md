@@ -43,8 +43,10 @@ A API será criada em 3 linguagens diferentes para criação de portfólio e tes
 - [Modelagem de Banco de Dados](#modelagem-de-banco-de-dados)
     - [1. Modelo de Dados](#1-modelo-de-dados)
       - [Tabela `users`](#tabela-users)
+      - [Tabela `authors`](#tabela-authors)
       - [Tabela `books`](#tabela-books)
       - [Tabela `user_books`](#tabela-user_books)
+      - [Tabela `author_books`](#tabela-author_books)
     - [2. Relacionamentos](#2-relacionamentos)
     - [3. Relacionamentos Específicos](#3-relacionamentos-específicos)
       - [Usuários e Livros](#usuários-e-livros)
@@ -334,10 +336,20 @@ Claro! Vou adicionar uma seção na documentação da modelagem de banco de dado
 
 | Coluna        | Tipo         | Descrição                        |
 |---------------|--------------|----------------------------------|
-| `user_id`     | INT          | Identificador único do usuário (PK) |
-| `username`    | VARCHAR(50)  | Nome de usuário                   |
+| `id`          | INT          | Identificador único do usuário (PK) |
+| `name`        | VARCHAR(50)  | Nome de usuário                   |
 | `password`    | VARCHAR(255) | Senha do usuário                  |
 | `email`       | VARCHAR(100) | Email do usuário                  |
+| `created_at`  | TIMESTAMP    | Data e hora de criação do usuário |
+| `updated_at`  | TIMESTAMP    | Data e hora da última atualização |
+
+#### Tabela `authors`
+
+| Coluna        | Tipo         | Descrição                        |
+|---------------|--------------|----------------------------------|
+| `id`          | INT          | Identificador único do autor (PK) |
+| `name`        | VARCHAR(50)  | Nome de autor                     |
+| `biography`   | TEXT         | Biografia do autor                |
 | `created_at`  | TIMESTAMP    | Data e hora de criação do usuário |
 | `updated_at`  | TIMESTAMP    | Data e hora da última atualização |
 
@@ -345,13 +357,12 @@ Claro! Vou adicionar uma seção na documentação da modelagem de banco de dado
 
 | Coluna           | Tipo         | Descrição                                      |
 |------------------|--------------|------------------------------------------------|
-| `book_id`        | INT          | Identificador único do livro (PK)              |
+| `id`             | INT          | Identificador único do livro (PK)              |
 | `isbn`           | VARCHAR(20)  | ISBN do livro                                  |
 | `title`          | VARCHAR(255) | Título do livro                                |
 | `subtitle`       | VARCHAR(255) | Subtítulo do livro (opcional)                  |
 | `series`         | VARCHAR(255) | Série ou coleção do livro (opcional)           |
 | `volume`         | VARCHAR(20)  | Volume do livro na série (opcional)            |
-| `author`         | VARCHAR(255) | Autor do livro                                 |
 | `translator`     | VARCHAR(255) | Tradutor do livro (opcional)                   |
 | `language`       | VARCHAR(50)  | Idioma do livro                                |
 | `publisher`      | VARCHAR(255) | Editora do livro                               |
@@ -370,6 +381,14 @@ Claro! Vou adicionar uma seção na documentação da modelagem de banco de dado
 | `user_id`     | INT         | Identificador do usuário (FK)       |
 | `book_id`     | INT         | Identificador do livro (FK)         |
 | `linked_at`   | TIMESTAMP   | Data e hora em que o livro foi vinculado ao usuário |
+
+#### Tabela `author_books`
+
+| Coluna        | Tipo        | Descrição                          |
+|---------------|-------------|------------------------------------|
+| `author_id`   | INT         | Identificador do autor (FK)        |
+| `book_id`     | INT         | Identificador do livro (FK)        |
+| `linked_at`   | TIMESTAMP   | Data e hora em que o livro foi vinculado ao autor |
 
 ### 2. Relacionamentos
 
