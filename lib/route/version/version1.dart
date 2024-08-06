@@ -1,7 +1,6 @@
 import 'package:vania/vania.dart';
 
 import '../../app/http/controllers/book_controller.dart';
-import '../../app/http/middleware/book_middleware.dart';
 
 class Version1 extends Route {
   final BookController _bookController;
@@ -15,7 +14,7 @@ class Version1 extends Route {
     Router.group(() {
       Router.get('{isbn}', _bookController.getBookByIsbn);
     }, prefix: 'isbn', middleware: [
-      BookMiddleware(),
+      // BookMiddleware(),
     ]);
   }
 }
