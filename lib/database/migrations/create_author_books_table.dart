@@ -5,16 +5,26 @@ class CreateAuthorBooksTable extends Migration {
   Future<void> up() async {
     super.up();
     await createTableNotExists('author_books', () {
-      integer('author_id', comment: 'ID do autor');
-      integer('book_id', comment: 'ID do livro');
-      primary('author_books');
-      foreign('book_id', 'books', 'id',
-          constrained: true, onDelete: 'SET NULL');
-      foreign('author_id', 'authors', 'id',
-          constrained: true, onDelete: 'SET NULL');
+      bigInt('author_id', comment: 'ID do autor', unsigned: true);
+      bigInt('book_id', comment: 'ID do livro', unsigned: true);
       timeStamp('linked_at',
           comment: 'Data e hora em que o livro foi vinculado ao autor');
     });
+
+    await MigrationConnection().dbConnection?.execute('''
+      ALTER TABLE `author_books`
+      ADD PRIMARY KEY (`author_id`, `book_id`);
+
+      ALTER TABLE `author_books`
+      ADD CONSTRAINT `fk_author_book_id`
+      FOREIGN KEY (`book_id`) REFERENCES `books` (`id`)
+      ON DELETE CASCADE;
+
+      ALTER TABLE `author_books`
+      ADD CONSTRAINT `fk_author_id`
+      FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`)
+      ON DELETE CASCADE;
+    ''');
   }
 
   @override
