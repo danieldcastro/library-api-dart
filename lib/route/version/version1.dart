@@ -1,11 +1,13 @@
 import 'package:vania/vania.dart';
 
 import '../../app/http/controllers/book_controller.dart';
+import '../../app/http/controllers/user_controller.dart';
 
 class Version1 extends Route {
   final BookController _bookController;
+  final UserController _userController;
 
-  Version1(this._bookController);
+  Version1(this._bookController, this._userController);
 
   @override
   void register() {
@@ -16,5 +18,7 @@ class Version1 extends Route {
     }, prefix: 'isbn', middleware: [
       // BookMiddleware(),
     ]);
+
+    Router.post('/users', _userController.createUser);
   }
 }
