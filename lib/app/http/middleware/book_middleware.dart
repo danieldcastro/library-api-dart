@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:vania/vania.dart';
 
 import '../../models/error_model.dart';
-import '../../utils/enums/error_type_enum.dart';
+import '../../utils/enums/http_error_enum.dart';
 import '../../utils/extensions/string_extensions.dart';
 
 class BookMiddleware extends Middleware {
@@ -20,7 +20,7 @@ class BookMiddleware extends Middleware {
       //     .toMap());
       throw HttpResponseException(
         message: ErrorModel.fromErrorType(
-                ErrorTypeEnum.fromStatusCode(HttpStatus.badRequest),
+                HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
                 'ISBN Inválido')
             .toMap(),
         code: HttpStatus.badRequest,

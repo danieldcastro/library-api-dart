@@ -79,6 +79,11 @@ class CreateBooksTable extends Migration {
       );
       timeStamps();
     });
+
+    await MigrationConnection().dbConnection?.execute('''
+      ALTER TABLE `books`
+      ADD CONSTRAINT unique_isbn UNIQUE (isbn);
+    ''');
   }
 
   @override

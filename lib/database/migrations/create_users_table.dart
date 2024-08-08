@@ -11,6 +11,11 @@ class CreateUsersTable extends Migration {
       string('email', length: 100, comment: 'Email do usuário');
       timeStamps();
     });
+
+    await MigrationConnection().dbConnection?.execute('''
+      ALTER TABLE `users`
+      ADD CONSTRAINT unique_email UNIQUE (email);
+    ''');
   }
 
   @override

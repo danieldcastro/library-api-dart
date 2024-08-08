@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import '../utils/enums/error_type_enum.dart';
+import '../utils/enums/http_error_enum.dart';
 
 class ErrorModel {
   final String message;
@@ -22,7 +22,7 @@ class ErrorModel {
     return jsonEncode(toMap());
   }
 
-  factory ErrorModel.fromErrorType(ErrorTypeEnum errorType, String message) =>
+  factory ErrorModel.fromErrorType(HttpErrorEnum errorType, String message) =>
       ErrorModel(
         message: message,
         type: errorType.type,

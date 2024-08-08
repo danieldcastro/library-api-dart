@@ -4,7 +4,7 @@ import 'package:vania/vania.dart';
 
 import '../../data/repositories/book_repository.dart';
 import '../../models/error_model.dart';
-import '../../utils/enums/error_type_enum.dart';
+import '../../utils/enums/http_error_enum.dart';
 import '../../utils/fp/either.dart';
 
 class BookController extends Controller {
@@ -18,7 +18,7 @@ class BookController extends Controller {
     return result.fold(
       (l) => Response.json(
           ErrorModel.fromErrorType(
-                  ErrorTypeEnum.fromStatusCode(HttpStatus.badRequest),
+                  HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
                   'ISBN Inválido')
               .toMap(),
           HttpStatus.badRequest),
