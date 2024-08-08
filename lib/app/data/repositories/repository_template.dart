@@ -1,5 +1,7 @@
 import 'package:vania/vania.dart';
 
+import '../../models/error_model.dart';
+import '../../utils/enums/http_error_enum.dart';
 import '../../utils/exceptions/my_sql_exceptions/my_sql_error.dart';
 import '../../utils/fp/either.dart';
 
@@ -16,13 +18,16 @@ abstract class RepositoryTemplate<T extends Model> {
     return obj.addTimestamps;
   }
 
-  Future<Either<MySqlError, Map<String, dynamic>>> createAndReturn(
+  Future<Either<ErrorModel, Map<String, dynamic>>> createAndReturn(
       Map<String, dynamic> obj) async {
     try {
       T model = createModelInstance();
       return Right(await model.query().create(_addTimeStamps(obj)));
     } on Exception catch (e) {
-      return Left(MySqlError.handleError(e.toString()));
+      final error = MySqlError.handleError(e.toString());
+
+      final HttpErrorEnum httpError = HttpErrorEnum.fromMySqlError(error);
+      return Left(ErrorModel(type: httpError, message: error.message));
     }
   }
 

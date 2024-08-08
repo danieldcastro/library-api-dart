@@ -4,7 +4,7 @@ import '../utils/enums/http_error_enum.dart';
 
 class ErrorModel {
   final String message;
-  final String type;
+  final HttpErrorEnum type;
 
   ErrorModel({
     required this.message,
@@ -14,7 +14,7 @@ class ErrorModel {
   Map<String, dynamic> toMap() {
     return {
       'message': message,
-      'type': type,
+      'type': HttpErrorEnum.values[type.index].type,
     };
   }
 
@@ -22,9 +22,13 @@ class ErrorModel {
     return jsonEncode(toMap());
   }
 
-  factory ErrorModel.fromErrorType(HttpErrorEnum errorType, String message) =>
-      ErrorModel(
-        message: message,
-        type: errorType.type,
-      );
+  ErrorModel copyWith({
+    String? message,
+    HttpErrorEnum? type,
+  }) {
+    return ErrorModel(
+      message: message ?? this.message,
+      type: type ?? this.type,
+    );
+  }
 }

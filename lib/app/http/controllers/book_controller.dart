@@ -6,8 +6,9 @@ import '../../data/repositories/book_repository.dart';
 import '../../models/error_model.dart';
 import '../../utils/enums/http_error_enum.dart';
 import '../../utils/fp/either.dart';
+import 'base_controller.dart';
 
-class BookController extends Controller {
+class BookController extends BaseController {
   final BookRepository _bookRepository;
 
   BookController(this._bookRepository);
@@ -17,9 +18,9 @@ class BookController extends Controller {
 
     return result.fold(
       (l) => Response.json(
-          ErrorModel.fromErrorType(
-                  HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
-                  'ISBN Inválido')
+          ErrorModel(
+                  type: HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
+                  message: 'ISBN Inválido')
               .toMap(),
           HttpStatus.badRequest),
       (r) => Response.json(r.toMap()),

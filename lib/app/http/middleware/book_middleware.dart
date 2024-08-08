@@ -19,9 +19,9 @@ class BookMiddleware extends Middleware {
       //         'ISBN Inválidosssss')
       //     .toMap());
       throw HttpResponseException(
-        message: ErrorModel.fromErrorType(
-                HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
-                'ISBN Inválido')
+        message: ErrorModel(
+                type: HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
+                message: 'ISBN Inválido')
             .toMap(),
         code: HttpStatus.badRequest,
         responseType: ResponseType.json,
