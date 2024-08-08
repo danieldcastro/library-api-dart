@@ -2,6 +2,7 @@ import 'package:vania/vania.dart';
 
 import '../../app/http/controllers/book_controller.dart';
 import '../../app/http/controllers/user_controller.dart';
+import '../../app/http/middleware/user_middleware.dart';
 
 class Version1 extends Route {
   final BookController _bookController;
@@ -19,6 +20,10 @@ class Version1 extends Route {
       // BookMiddleware(),
     ]);
 
-    Router.post('/users', _userController.createUser);
+    Router.group(() {
+      Router.post('/users', _userController.createUser);
+    }, middleware: [
+      UserMiddleware(),
+    ]);
   }
 }

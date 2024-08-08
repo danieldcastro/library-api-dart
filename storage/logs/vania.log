@@ -5,3 +5,13 @@ Tried calling: hasOnlyNumbers
 [2024-08-05 09:31:27] ERROR: HttpException: ISBN Inválido
 [2024-08-05 09:31:42] ERROR: HttpException: ISBN Inválido
 [2024-08-05 09:31:46] ERROR: HttpException: ISBN Inválido
+[2024-08-08 13:19:37] ERROR: FormatException: blabla
+[2024-08-08 13:20:29] ERROR: FormatException: blabla
+[2024-08-08 14:00:29] ERROR: {"message":"O campo nome é obrigatório","type":"Unprocessable Entity"}
+[2024-08-08 14:00:38] ERROR: {"message":"O campo nome é obrigatório","type":"Unprocessable Entity"}
+[2024-08-08 14:00:42] ERROR: {"message":"O campo nome é obrigatório","type":"Unprocessable Entity"}
+[2024-08-08 14:07:13] ERROR: {"message":"O campo nome é obrigatório","type":"Unprocessable Entity"}
+[2024-08-08 14:14:03] ERROR: Instance of 'ErrorModel'
+[2024-08-08 14:15:39] ERROR: Instance of 'ErrorModel'
+[2024-08-08 14:15:58] ERROR: {"message":"O campo nome é obrigatório","type":"Unprocessable Entity"}
+[2024-08-08 14:19:31] ERROR: CustomHttpException: 422 - {message: O campo nome é obrigatório, type: Unprocessable Entity}
