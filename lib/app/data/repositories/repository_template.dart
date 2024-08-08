@@ -12,12 +12,15 @@ extension Teste on Map<String, dynamic> {
 }
 
 abstract class RepositoryTemplate<T extends Model> {
+  Map<String, dynamic> _addTimeStamps(Map<String, dynamic> obj) {
+    return obj.addTimestamps;
+  }
+
   Future<Either<MySqlError, Map<String, dynamic>>> createAndReturn(
       Map<String, dynamic> obj) async {
     try {
       T model = createModelInstance();
-      final withTimestamps = obj.addTimestamps;
-      return Right(await model.query().create(withTimestamps));
+      return Right(await model.query().create(_addTimeStamps(obj)));
     } on Exception catch (e) {
       return Left(MySqlError.handleError(e.toString()));
     }

@@ -18,10 +18,14 @@ class UserController extends Controller {
 
     return result.fold((error) {
       final HttpErrorEnum httpError = HttpErrorEnum.fromMySqlError(error);
-
-      return Response.json(
-          ErrorModel.fromErrorType(httpError, 'Email já cadastrado.').toMap(),
-          httpError.statusCode);
+      return switch (httpError) {
+        HttpErrorEnum.conflict => Response.json(
+            ErrorModel.fromErrorType(httpError, 'Email já cadastrado.').toMap(),
+            httpError.statusCode),
+        _ => Response.json(
+            ErrorModel.fromErrorType(httpError, error.message).toMap(),
+            httpError.statusCode)
+      };
     },
         // ignore: unnecessary_lambdas
         (success) => Response.json(success, HttpStatus.created));
