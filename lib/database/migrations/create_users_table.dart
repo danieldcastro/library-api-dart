@@ -7,8 +7,19 @@ class CreateUsersTable extends Migration {
     await createTableNotExists('users', () {
       id();
       string('name', length: 100, comment: 'Nome do usuário');
-      string('password', length: 255, comment: 'Senha do usuário');
       string('email', length: 100, comment: 'Email do usuário');
+      string('password',
+          length: 255, comment: 'hash da senha do usuário em base64');
+      string('salt',
+          length: 255,
+          comment: 'Salt da senha do usuário em base64',
+          nullable: true);
+      integer('parallelism',
+          comment: 'Paralelismo da senha do usuário', nullable: true);
+      integer('memory_size',
+          comment: 'Tamanho da memória da senha do usuário', nullable: true);
+      integer('iterations',
+          comment: 'Iterações da senha do usuário', nullable: true);
       timeStamps();
     });
 
