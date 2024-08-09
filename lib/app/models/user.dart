@@ -1,6 +1,7 @@
 import 'package:vania/vania.dart';
 
 class User extends Model {
+  final int? id;
   final String? name;
   final String? email;
   final String? password;
@@ -10,6 +11,7 @@ class User extends Model {
   final int? iterations;
 
   User({
+    this.id,
     this.name,
     this.email,
     this.password,
@@ -55,6 +57,7 @@ class User extends Model {
   }
 
   User copyWith({
+    int? id,
     String? name,
     String? email,
     String? password,
@@ -64,6 +67,7 @@ class User extends Model {
     int? iterations,
   }) {
     return User(
+      id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
       password: password ?? this.password,

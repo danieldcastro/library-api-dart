@@ -9,7 +9,9 @@ class CreateUsersTable extends Migration {
       string('name', length: 100, comment: 'Nome do usuário');
       string('email', length: 100, comment: 'Email do usuário');
       string('password',
-          length: 255, comment: 'hash da senha do usuário em base64');
+          length: 255,
+          comment: 'hash da senha do usuário em base64',
+          nullable: true);
       string('salt',
           length: 255,
           comment: 'Salt da senha do usuário em base64',

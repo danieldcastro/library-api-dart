@@ -11,11 +11,20 @@ extension Teste on Map<String, dynamic> {
     this['updated_at'] = DateTime.now().toIso8601String();
     return this;
   }
+
+  Map<String, dynamic> get addUpdatedAt {
+    this['updated_at'] = DateTime.now().toIso8601String();
+    return this;
+  }
 }
 
 abstract class RepositoryTemplate<T extends Model> {
   Map<String, dynamic> _addTimeStamps(Map<String, dynamic> obj) {
     return obj.addTimestamps;
+  }
+
+  Map<String, dynamic> _addUpdatedAt(Map<String, dynamic> obj) {
+    return obj.addUpdatedAt;
   }
 
   Future<Either<ErrorModel, Map<String, dynamic>>> createAndReturn(
@@ -28,6 +37,32 @@ abstract class RepositoryTemplate<T extends Model> {
 
       final HttpErrorEnum httpError = HttpErrorEnum.fromMySqlError(error);
       return Left(ErrorModel(type: httpError, message: error.message));
+    }
+  }
+
+  Future<ErrorModel?> update(Map<String, dynamic> obj, int id) async {
+    try {
+      T model = createModelInstance();
+      await model.query().where('id', '=', id).update(_addUpdatedAt(obj));
+      return null;
+    } on Exception catch (e) {
+      final error = MySqlError.handleError(e.toString());
+
+      final HttpErrorEnum httpError = HttpErrorEnum.fromMySqlError(error);
+      return ErrorModel(type: httpError, message: error.message);
+    }
+  }
+
+  Future<ErrorModel?> delete(int id) async {
+    try {
+      T model = createModelInstance();
+      await model.query().delete(id);
+      return null;
+    } on Exception catch (e) {
+      final error = MySqlError.handleError(e.toString());
+
+      final HttpErrorEnum httpError = HttpErrorEnum.fromMySqlError(error);
+      return ErrorModel(type: httpError, message: error.message);
     }
   }
 
