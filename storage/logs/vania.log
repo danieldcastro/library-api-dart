@@ -18,3 +18,5 @@ Tried calling: hasOnlyNumbers
 [2024-08-08 15:37:26] ERROR: CustomHttpException: 422 - {message: O campo nome é obrigatório, type: Unprocessable Entity}
 [2024-08-08 15:37:36] ERROR: CustomHttpException: 422 - {message: O campo nome é obrigatório, type: Unprocessable Entity}
 [2024-08-08 17:05:26] ERROR: CustomHttpException: 422 - {message: O campo nome é obrigatório, type: Unprocessable Entity}
+[2024-08-11 17:46:14] ERROR: Instance of 'Response'
+[2024-08-11 17:48:19] ERROR: CustomHttpException: 422 - {message: O campo nome é obrigatório, type: Unprocessable Entity}

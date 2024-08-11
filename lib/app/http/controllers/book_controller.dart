@@ -4,6 +4,7 @@ import 'package:vania/vania.dart';
 
 import '../../data/repositories/book_repository.dart';
 import '../../models/error_model.dart';
+import '../../models/success_model.dart';
 import '../../utils/enums/http_error_enum.dart';
 import '../../utils/fp/either.dart';
 import 'base_controller.dart';
@@ -23,7 +24,7 @@ class BookController extends BaseController {
                   message: 'ISBN Inválido')
               .toMap(),
           HttpStatus.badRequest),
-      (r) => Response.json(r.toMap()),
+      (r) => Response.json(SuccessModel(data: r).toMap()),
     );
   }
 }

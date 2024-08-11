@@ -7,7 +7,7 @@ import '../../utils/enums/http_error_enum.dart';
 
 class UserMiddleware extends Middleware {
   @override
-  Future<ErrorModel?> handle(Request req) async {
+  Future<Response?> handle(Request req) async {
     try {
       req.validate({
         'name': 'required',
@@ -22,6 +22,13 @@ class UserMiddleware extends Middleware {
       });
       return null;
     } catch (e) {
+      // return Response.json(
+      //     ErrorModel(
+      //       message: 'O campo nome é obrigatório',
+      //       type: HttpErrorEnum.unprocessableEntity,
+      //     ).toMap(),
+      //     HttpStatus.unprocessableEntity);
+
       throw CustomHttpException(
         statusCode: HttpStatus.unprocessableEntity,
         contentType: ContentType.json,

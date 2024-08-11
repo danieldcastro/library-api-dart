@@ -5,6 +5,7 @@ import 'package:vania/vania.dart';
 import '../../data/repositories/auth_repository.dart';
 import '../../data/repositories/user_repository.dart';
 import '../../models/error_model.dart';
+import '../../models/success_model.dart';
 import '../../utils/enums/http_error_enum.dart';
 import '../../utils/fp/either.dart';
 import '../../utils/mixins/password_hash_mixin.dart';
@@ -46,7 +47,7 @@ class AuthController extends BaseController with PasswordHashMixin {
       final token = await _authRepository.generateToken(success);
 
       return token.fold(handleError, (token) {
-        return Response.json(token, HttpStatus.ok);
+        return Response.json(SuccessModel(data: token).toMap(), HttpStatus.ok);
       });
     });
   }

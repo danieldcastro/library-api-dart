@@ -66,5 +66,24 @@ abstract class RepositoryTemplate<T extends Model> {
     }
   }
 
+  Future<Either<ErrorModel, Map<String, dynamic>>> get(int id) async {
+    try {
+      T model = createModelInstance();
+      final data = await model.query().select().where('id', '=', id).first();
+
+      if (data == null) {
+        return Left(ErrorModel(
+            type: HttpErrorEnum.notFound, message: 'Registro não encontrado'));
+      }
+
+      return Right(data);
+    } on Exception catch (e) {
+      final error = MySqlError.handleError(e.toString());
+
+      final HttpErrorEnum httpError = HttpErrorEnum.fromMySqlError(error);
+      return Left(ErrorModel(type: httpError, message: error.message));
+    }
+  }
+
   T createModelInstance();
 }
