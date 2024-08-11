@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:cryptography/cryptography.dart';
 import 'package:vania/vania.dart';
 
+import '../../models/user.dart';
 import '../extensions/string_extensions.dart';
 
 mixin PasswordHashMixin {
@@ -75,4 +76,14 @@ class Password {
     required this.memorySize,
     required this.iterations,
   });
+
+  factory Password.fromUser(User user) {
+    return Password(
+      base64HashPass: user.password ?? '',
+      base64Salt: user.salt ?? '',
+      parallelism: user.parallelism ?? 0,
+      memorySize: user.memorySize ?? 0,
+      iterations: user.iterations ?? 0,
+    );
+  }
 }

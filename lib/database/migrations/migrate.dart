@@ -5,6 +5,7 @@ import 'package:vania/vania.dart';
 import 'create_author_books_table.dart';
 import 'create_authors_table.dart';
 import 'create_books_table.dart';
+import 'create_personal_access_tokens_table.dart';
 import 'create_user_books_table.dart';
 import 'create_users_table.dart';
 
@@ -21,6 +22,7 @@ void main(List<String> args) async {
 
 class Migrate {
   Future<void> registry() async {
+    await CreatePersonalAccessTokensTable().up();
     await CreateUsersTable().up();
     await CreateBooksTable().up();
     await CreateAuthorsTable().up();

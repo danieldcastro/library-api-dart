@@ -15,10 +15,11 @@ class UserController extends BaseController with PasswordHashMixin {
   UserController(this._userRepository);
 
   Future<Response> createUser(Request req) async {
-    User user = User.fromJson(req.body);
+    User user = User.fromRequestJson(req.body);
 
-    final result =
-        await _userRepository.createAndReturn(user.toMap()..remove('password'));
+    final result = await _userRepository.createAndReturn(user.toMap()
+      ..remove('password')
+      ..remove('id'));
 
     return result.fold((error) {
       if (error.type.statusCode == HttpStatus.conflict) {
@@ -60,12 +61,11 @@ class UserController extends BaseController with PasswordHashMixin {
       'iterations': pass.iterations,
     };
   }
+
+  // final pass = await hashPassword(req.body['password']);
+
+  // final isVerified =
+  //     await verifyPassword(hashedPassword: pass, password: 'balbal');
+
+  // print(isVerified);
 }
-
-
- // final pass = await hashPassword(req.body['password']);
-
-    // final isVerified =
-    //     await verifyPassword(hashedPassword: pass, password: 'balbal');
-
-    // print(isVerified);

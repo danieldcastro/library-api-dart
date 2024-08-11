@@ -23,7 +23,7 @@ class User extends Model {
     super.table('users');
   }
 
-  factory User.fromJson(Map<String, dynamic> json) => switch (json) {
+  factory User.fromRequestJson(Map<String, dynamic> json) => switch (json) {
         {
           'name': final String name,
           'email': final String email,
@@ -34,11 +34,36 @@ class User extends Model {
             email: email,
             password: password,
           ),
-        _ => throw ArgumentError('Invalid User.fromJson'),
+        _ => throw ArgumentError('Invalid User.fromRequestJson'),
+      };
+
+  factory User.fromDbJson(Map<String, dynamic> json) => switch (json) {
+        {
+          'id': final int id,
+          'name': final String name,
+          'email': final String email,
+          'password': final String password,
+          'salt': final String salt,
+          'parallelism': final int parallelism,
+          'memory_size': final int memorySize,
+          'iterations': final int iterations,
+        } =>
+          User(
+            id: id,
+            name: name,
+            email: email,
+            password: password,
+            salt: salt,
+            parallelism: parallelism,
+            memorySize: memorySize,
+            iterations: iterations,
+          ),
+        _ => throw ArgumentError('Invalid User.fromDbJson'),
       };
 
   Map<String, dynamic> toMap() {
     return {
+      'id': id,
       'name': name,
       'email': email,
       'password': password,
