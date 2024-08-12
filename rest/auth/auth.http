@@ -4,6 +4,6 @@ POST {{BASE_URL}}/auth/login
 Content-Type: application/json
 
 {
-  "email": "",
-  "password": "123123"
+  "email": "john.doe",
+  "password": "123133"
 }

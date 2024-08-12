@@ -3,9 +3,9 @@ POST {{BASE_URL}}/users
 Content-Type: application/json
 
 {
-  "name": "",
+  "name": "Teste",
   "email": "john.doe@example.com",
-  "password": "password123"
+  "password": "123133"
 }
 
 ### Delete user by ID

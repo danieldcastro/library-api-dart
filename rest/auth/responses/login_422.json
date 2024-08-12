@@ -1,0 +1,4 @@
+{
+    "message": "O campo email deve ser um email válido",
+    "type": "Unprocessable Entity"
+}
