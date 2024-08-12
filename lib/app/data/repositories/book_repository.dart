@@ -27,7 +27,6 @@ class BookRepository extends RepositoryTemplate {
 
   Future<Either<ErrorModel, Book>> getBookByIsbn(String isbn) async {
     final result = await getByParam(paramContent: isbn, paramName: 'isbn');
-
     return result.fold(
       (l) async {
         return await _getBookByIsbnBrasilApi(isbn);
