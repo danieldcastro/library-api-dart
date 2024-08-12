@@ -7,6 +7,7 @@ import '../../data/repositories/user_repository.dart';
 import '../../models/error_model.dart';
 import '../../models/success_model.dart';
 import '../../utils/enums/http_error_enum.dart';
+import '../../utils/extensions/string_extensions.dart';
 import '../../utils/fp/either.dart';
 import '../../utils/mixins/password_hash_mixin.dart';
 import 'base_controller.dart';
@@ -22,7 +23,7 @@ class AuthController extends BaseController with PasswordHashMixin {
     final email = body['email'] as String?;
     final password = body['password'] as String?;
 
-    if (email == null || password == null) {
+    if (email.isNullOrEmpty || password.isNullOrEmpty) {
       return Response.json(
           ErrorModel(
                   type: HttpErrorEnum.badRequest,
@@ -31,11 +32,11 @@ class AuthController extends BaseController with PasswordHashMixin {
           HttpStatus.badRequest);
     }
 
-    final user = await _userRepository.getUserByEmail(email);
+    final user = await _userRepository.getUserByEmail(email!);
 
     return user.fold(handleError, (success) async {
       final pass = await verifyPassword(
-          password: password, hashedPassword: Password.fromUser(success));
+          password: password!, hashedPassword: Password.fromUser(success));
 
       if (!pass) {
         return Response.json(
