@@ -22,7 +22,7 @@ class Version1 extends Route {
 
     Router.group(() {
       Router.post('/users', _userController.createUser);
-      Router.delete('/users/delete/{id}', _userController.deleteUserById)
+      Router.delete('/users/{id}', _userController.deleteUserById)
           .middleware([AuthenticateMiddleware()]);
     }, middleware: [
       // UserMiddleware(),
