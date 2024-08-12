@@ -1,0 +1,9 @@
+### Login user with email and password
+
+POST {{BASE_URL}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "",
+  "password": "123123"
+}

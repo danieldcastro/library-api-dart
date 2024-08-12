@@ -1,0 +1,4 @@
+{
+    "message": "Email e senha são obrigatórios",
+    "type": "Bad Request"
+}

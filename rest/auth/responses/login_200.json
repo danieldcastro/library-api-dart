@@ -1,0 +1,8 @@
+{
+    "data": {
+        "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoie1wiaWRcIjoyMCxcIm5hbWVcIjpcImZxcVwiLFwiZW1haWxcIjpcImFAYXNhLmNvbVwiLFwicGFzc3dvcmRcIjpcImNTbnJ6R3lLd1RucUZRa0drTk5ZZHRlZExSeVpwazdYRm5xSzdrN2JnUGM9XCIsXCJzYWx0XCI6XCJQZ09lbzB4NEc5cUhaRTlkNTRxck9EMVU4ZU8vK0NZYStjWE9pM3dJdTljPVwiLFwicGFyYWxsZWxpc21cIjoyLFwibWVtb3J5X3NpemVcIjoxNTAwMCxcIml0ZXJhdGlvbnNcIjoxfSIsInR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJpZCI6MjAsImlhdCI6MTcyMzQyNDQyNiwiZXhwIjoxNzIzNTEwODI2fQ.3Q8QUcWk5S-vheWocvY0ATxZ3r-NhOdGo1L9zV6pyrI",
+        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsInR5cGUiOiJyZWZyZXNoX3Rva2VuIiwiaWF0IjoxNzIzNDI0NDI2LCJleHAiOjE3MjYwMTY0MjZ9.NLBVktB6J05ly4mLeTcSAIEjbETT_AnS3HYKYrtZ6N0",
+        "expires_in": "2024-08-12T22:00:26.503741"
+    },
+    "message": null
+}

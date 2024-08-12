@@ -1,7 +1,0 @@
-### Get book by ISBN 978-65-00-36067-7
-http://localhost:8000/api/v1/isbn/9786500360677
-Content-type: application/json       
-
-### [ERROR] Get book by ISBN 978
-http://localhost:8000/api/v1/isbn/97
-Content-type: application/json     

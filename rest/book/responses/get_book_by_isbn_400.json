@@ -1,0 +1,4 @@
+{
+    "message": "ISBN inválido",
+    "type": "Bad Request"
+}

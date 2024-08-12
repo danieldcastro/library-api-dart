@@ -1,0 +1,14 @@
+### Register user with name, email and password
+POST {{BASE_URL}}/users
+Content-Type: application/json
+
+{
+  "name": "",
+  "email": "john.doe@example.com",
+  "password": "password123"
+}
+
+### Delete user by ID
+DELETE {{BASE_URL}}/users/20
+Content-Type: application/json
+Authorization: Bearer {{TOKEN}}
