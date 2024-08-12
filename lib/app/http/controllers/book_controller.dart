@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:vania/vania.dart';
 
 import '../../data/repositories/book_repository.dart';
@@ -15,16 +13,22 @@ class BookController extends BaseController {
   BookController(this._bookRepository);
 
   Future<Response> getBookByIsbn(Object isbn) async {
-    final result = await _bookRepository.getBookByIsbn(isbn.toString());
+    final String isbnFormatted = isbn.toString().replaceAll('-', '');
+
+    if (!(isbnFormatted.length == 10) && !(isbnFormatted.length == 13)) {
+      return handleError(
+        ErrorModel(
+          type: HttpErrorEnum.badRequest,
+          message: 'ISBN inválido',
+        ),
+      );
+    }
+
+    final result = await _bookRepository.getBookByIsbn(isbnFormatted);
 
     return result.fold(
-      (l) => Response.json(
-          ErrorModel(
-                  type: HttpErrorEnum.fromStatusCode(HttpStatus.badRequest),
-                  message: 'ISBN Inválido')
-              .toMap(),
-          HttpStatus.badRequest),
-      (r) => Response.json(SuccessModel(data: r).toMap()),
+      handleError,
+      (r) => Response.json(SuccessModel(data: r.toMap()).toMap()),
     );
   }
 }

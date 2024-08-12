@@ -1,8 +1,9 @@
 import 'package:collection/collection.dart';
+import 'package:vania/vania.dart';
 
 import '../utils/enums/book_format_enum.dart';
 
-class Book {
+class Book extends Model {
   final String? title;
   final String? subtitle;
   final List<String?>? authors;
@@ -27,7 +28,9 @@ class Book {
     this.pages,
     this.subjects,
     this.location,
-  });
+  }) {
+    super.table('books');
+  }
 
   factory Book.fromJson(Map<String, dynamic> json) {
     return switch (json) {

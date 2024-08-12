@@ -17,8 +17,8 @@ class Version1 extends Route {
     Router.basePrefix('api/v1');
 
     Router.group(() {
-      Router.get('{isbn}', _bookController.getBookByIsbn);
-    }, prefix: 'isbn', middleware: [AuthenticateMiddleware()]);
+      Router.get('/isbn/{isbn}', _bookController.getBookByIsbn);
+    }, prefix: 'books');
 
     Router.group(() {
       Router.post('/users', _userController.createUser);
