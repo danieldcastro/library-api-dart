@@ -3,7 +3,6 @@ import 'package:vania/vania.dart';
 import '../../app/http/controllers/auth_controller.dart';
 import '../../app/http/controllers/book_controller.dart';
 import '../../app/http/controllers/user_controller.dart';
-import '../../app/http/middleware/authenticate.dart';
 
 class Version1 extends Route {
   final BookController _bookController;
@@ -22,8 +21,7 @@ class Version1 extends Route {
 
     Router.group(() {
       Router.post('/users', _userController.createUser);
-      Router.delete('/users/{id}', _userController.deleteUserById)
-          .middleware([AuthenticateMiddleware()]);
+      Router.delete('/users/{id}', _userController.deleteUserById);
     }, middleware: [
       // UserMiddleware(),
     ]);

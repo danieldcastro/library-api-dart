@@ -4,8 +4,9 @@ import 'package:vania/vania.dart';
 
 import '../../models/error_model.dart';
 import '../../utils/enums/http_error_enum.dart';
+import '../../utils/mixins/auth_mixin.dart';
 
-class BaseController extends Controller {
+class BaseController extends Controller with AuthMixin {
   Response handleError(ErrorModel error) => switch (error.type) {
         HttpErrorEnum.badRequest =>
           Response.json(error.toMap(), HttpStatus.badRequest),

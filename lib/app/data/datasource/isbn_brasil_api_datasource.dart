@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../../models/book.dart';
-import '../../utils/exceptions/external_exception.dart';
+import '../../utils/exceptions/exceptions.dart';
 import '../../utils/fp/either.dart';
 
 class IsbnBrasilApiDatasource {

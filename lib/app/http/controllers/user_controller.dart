@@ -88,7 +88,13 @@ class UserController extends BaseController with PasswordHashMixin {
     );
   }
 
-  Future<Response?> deleteUserById(int id) async {
+  Future<Response?> deleteUserById(Request req, int id) async {
+    final authCheck = await checkAuth(req);
+
+    if (authCheck != null) {
+      return authCheck;
+    }
+
     final user = await _userRepository.getById(id);
 
     return user.fold(
