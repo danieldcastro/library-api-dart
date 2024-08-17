@@ -6,7 +6,6 @@ import '../../data/repositories/user_repository.dart';
 import '../../models/error_model.dart';
 import '../../models/success_model.dart';
 import '../../models/user.dart';
-import '../../utils/enums/http_error_enum.dart';
 import '../../utils/fp/either.dart';
 import '../../utils/mixins/password_hash_mixin.dart';
 import 'base_controller.dart';
@@ -34,7 +33,7 @@ class UserController extends BaseController with PasswordHashMixin {
     } catch (e) {
       final errorMessage =
           ((e as dynamic).message as Map<String, dynamic>).entries.first.value;
-      return _unprocessableEntity(errorMessage);
+      return unprocessableEntity(errorMessage);
     }
   }
 
@@ -76,16 +75,6 @@ class UserController extends BaseController with PasswordHashMixin {
   Future<Map<String, dynamic>> _addHashPass({required User user}) async {
     final pass = await hashPassword(user.password ?? '');
     return pass.toMap();
-  }
-
-  Response _unprocessableEntity(String message) {
-    return Response.json(
-      ErrorModel(
-        message: message,
-        type: HttpErrorEnum.unprocessableEntity,
-      ).toMap(),
-      HttpStatus.unprocessableEntity,
-    );
   }
 
   Future<Response?> deleteUserById(Request req, int id) async {

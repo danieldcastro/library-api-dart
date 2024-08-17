@@ -31,4 +31,14 @@ class BaseController extends Controller with AuthMixin {
         HttpErrorEnum.unknown =>
           Response.json(error.toMap(), HttpStatus.internalServerError),
       };
+
+  Response unprocessableEntity(String message) {
+    return Response.json(
+      ErrorModel(
+        message: message,
+        type: HttpErrorEnum.unprocessableEntity,
+      ).toMap(),
+      HttpStatus.unprocessableEntity,
+    );
+  }
 }

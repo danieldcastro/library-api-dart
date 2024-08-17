@@ -20,6 +20,10 @@ class Version1 extends Route {
     }, prefix: 'books');
 
     Router.group(() {
+      Router.post('/books', _bookController.createBook);
+    });
+
+    Router.group(() {
       Router.post('/users', _userController.createUser);
       Router.delete('/users/{id}', _userController.deleteUserById);
     }, middleware: [
